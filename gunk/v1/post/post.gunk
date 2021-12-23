@@ -1,0 +1,64 @@
+package post
+
+type Post struct {
+	ID          int64  `pb:"1"`
+	CatID       int64  `pb:"2"`
+	Title       string `pb:"3"`
+	Description string `pb:"4"`
+	Image       string `pb:"5"`
+	CatName     string `pb:"6"`
+}
+
+type CreatePostRequest struct {
+	Post Post `pb:"1"`
+}
+
+type CreatePostResponse struct {
+	ID int64 `pb:"1"`
+}
+
+type GetPostRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type GetPostResponse struct {
+	Post Post `pb:"1"`
+}
+
+type UpdatePostRequest struct {
+	Post Post `pb:"1"`
+}
+
+type UpdatePostResponse struct{}
+
+type DeletePostRequest struct {
+	ID int64 `pb:"1"`
+}
+
+type DeletePostResponse struct{}
+
+type GetsPostRequest struct{}
+
+type GetsPostResponse struct {
+	Post []Post `pb:"1"`
+}
+
+type GetsPSRequest struct {
+	Offset int64 `pb:"1"`
+	Limit int64 `pb:"2"`
+	Search string `pb:"3"`
+}
+
+type GetsPSResponse struct {
+	Post []Post `pb:"1"`
+	Total int64 `pb:"2"`
+}
+
+type PostService interface {
+	Create(CreatePostRequest) CreatePostResponse
+	Get(GetPostRequest) GetPostResponse
+	Update(UpdatePostRequest) UpdatePostResponse
+	Delete(DeletePostRequest) DeletePostResponse
+	List(GetsPostRequest) GetsPostResponse
+	PaginateSearch(GetsPSRequest) GetsPSResponse
+}

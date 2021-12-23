@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Candal|Lora" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+
+    <!-- Custom Styling -->
+    <link rel="stylesheet" href="/asset/cms/asset/css/style.css" />
+
+    <title>Blog</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <h1 class="logo-text"><span>GO</span>Blog</h1>
+            </a>
+        </div>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Admin</a>
+                <ul class="bg-white">
+                    <li><a href="/category/create">Category Create</a></li>
+                    <li><a href="/categories">Category List</a></li>
+                    <li>
+                        <hr>
+                    </li>
+                    <li><a href="/post/create">Post Create</a></li>
+                    <li><a href="/posts">Post List</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <!-- Content -->
+        <div class="content clearfix">
+            <!-- Main Content -->
+            <div class="">
+                <!-- Product Card //-->
+                <div class="card card-body mb-5">
+                    <div class="row row-cols-1 row-cols-lg-1 g-2">
+
+                        <!-- Section: Product Image #1 //-->
+                        <div class="col">
+                        </div>
+                        <!-- Section: Product Body //-->
+                        <div class="col">
+                            <div class="h-100 d-flex flex-column">
+                                <!-- Section: Product Infomation //-->
+                                <div class="flex-grow-1">
+                                    <div class="h-100 d-flex flex-column">
+                                        <div class="flex-grow-1">
+                                            <div class="row row-cols-auto mb-3 g-1 text-uppercase">
+                                                <div class="col">
+                                                    <span class="badge bg-success text-white rounded-pill">Blog</span>
+                                                </div>
+                                            </div>
+                                            <h5 class="text-muted text-uppercase mb-1">{{.Post.CatName}} Blog</h5>
+                                            <h2>{{.Post.Title}}</h2>
+                                            <img class="w-100 rounded" src="/asset/{{.Post.Image}}" /><br>
+                                            <div class="fs-4 fw-bold mb-2">Author: Shaikh Taslim Ahmed</div>
+                                            <p>{{.Post.Description}}</p>
+                                        </div>
+                                        <p class="small mb-0"><span class="fw-bold">Release date:</span> 12 December 2021 on 12:33 PM</p>
+                                    </div>
+                                </div>
+                                <!-- Section: Product Quantity //-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- // Main Content -->
+        </div><br><br>
+        <!-- // Content -->
+    </div>
+    <!-- // Page Wrapper -->
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer-bottom">
+            &copy; grpc-gunk-blog.com | Designed by Sk Taslim Ahmed<br>
+        </div>
+        <!-- // footer -->
+
+        <!-- JQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Slick Carousel -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <!-- Custom Script -->
+        <script src="/asset/cms/asset/js/scripts.js"></script>
+</body>
+
+</html>

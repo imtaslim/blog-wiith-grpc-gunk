@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Candal|Lora" rel="stylesheet" />
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous" />
+
+    <!-- Custom Styling -->
+    <link rel="stylesheet" href="/asset/cms/asset/css/style.css" />
+    <style>
+        .morecontent span {
+            display: none;
+        }
+    </style>
+
+    <title>Blog</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <h1 class="logo-text"><span>GO</span>Blog</h1>
+            </a>
+        </div>
+        <i class="fa fa-bars menu-toggle"></i>
+        <ul class="nav">
+            <li style="width: 400px;">
+                <form action="/" method="get">
+                    <input type="search" class="form-control" name="search" value="{{.Search}}" placeholder="Search With Title or Category....">
+                </form>
+            </li>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Admin</a>
+                <ul class="bg-white">
+                    <li><a href="category/create">Category Create</a></li>
+                    <li><a href="categories">Category List</a></li>
+                    <li>
+                        <hr>
+                    </li>
+                    <li><a href="post/create">Post Create</a></li>
+                    <li><a href="posts">Post List</a></li>
+                </ul>
+            </li>
+            <!-- <li><a href="#">Services</a></li> -->
+            <!-- <li><a href="#">Sign Up</a></li>
+      <li><a href="#">Login</a></li> -->
+            <!-- <li>
+                <a href="#">
+                    <i class="fa fa-user"></i> Awa Melvine
+                    <i class="fa fa-chevron-down" style="font-size: 0.8em"></i>
+                </a>
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#" class="logout">Logout</a></li>
+                </ul>
+            </li> -->
+        </ul>
+    </header>
+
+    <!-- Page Wrapper -->
+    <div class="page-wrapper">
+        <!-- Post Slider -->
+        <div class="post-slider">
+            <h1 class="slider-title">Trending Posts</h1>
+            <i class="fas fa-chevron-left prev"></i>
+            <i class="fas fa-chevron-right next"></i>
+
+            <div class="post-wrapper">
+                {{ range .SlidePost}}
+                <div class="post">
+                    <img src="/asset/{{.Image}}" alt="" class="slider-image" />
+                    <div class="post-info">
+                        <h4>
+                            <a href="/single_post/{{.ID}}">{{.Title}}</a>
+                        </h4>
+                        <i class="far fa-user"> Awa Melvine</i> &nbsp;
+                        <i class="far fa-calendar"> Mar 8, 2019</i>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+        <!-- // Post Slider -->
+
+        <!-- Content -->
+        <div class="content clearfix">
+            <!-- Main Content -->
+            <div class="main-content">
+                <h1 class="recent-post-title">Recent Posts</h1>
+                {{ range .Post}}
+                <div class="post clearfix">
+                    <img src="/asset/{{.Image}}" alt="" class="post-image" />
+                    <div class="post-preview">
+                        <h2>
+                            <a href="/single_post/{{.ID}}">{{.Title}}</a>
+                        </h2>
+                        <i class="far fa-user"> Awa Melvine</i> &nbsp;
+                        <i class="far fa-calendar"> Mar 11, 2019</i>
+                        <p class="preview-text comment more">
+                            {{.Description}}
+                        </p>
+                        <a href="/single_post/{{.ID}}" class="btn
+                                read-more">Read
+                                More</a>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+            <!-- // Main Content -->
+            <div class="sidebar"><br><br><br>
+                <div class="section topics">
+                    <h2 class="section-title">Categories</h2>
+                    <ul>
+                        {{range .Categories}}
+                        <li><a href="/?search={{.Name}}">{{.Name}}</a></li>
+                        {{end}}
+                    </ul>
+                </div>
+            </div>
+        </div><br>
+        <!-- // Content -->
+        {{if gt .TotalPage 1}}
+        <ul class="pagination d-flex justify-content-center">
+            <li class="page-item">
+                {{if .PrePageURL}}
+                <a class="page-link" href="{{.PrePageURL}}">Previous</a> {{else}}
+                <span class="page-link bg-secondary text-white" style="cursor: default;">Previous</span> {{end}}
+            </li>
+            {{range .Pagination}}
+            <li class="page-item">
+                {{if eq $.CurrentPage .PageNo}}
+                <span class="page-link bg-secondary text-white" style="cursor: default;">{{.PageNo}}</span> {{else}}
+                <a class="page-link" href="{{.URL}}">{{.PageNo}}</a> {{end}}
+            </li>
+            {{end}}
+            <li class="page-item">
+                {{if .NextPageURL}}
+                <a class="page-link" href="{{.NextPageURL}}">Next</a> {{else}}
+                <span class="page-link bg-secondary text-white" style="cursor: default;">Next</span> {{end}}
+            </li>
+        </ul><br><br><br> {{end}}
+    </div>
+    <!-- // Page Wrapper -->
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="footer-bottom">
+            &copy; grpc-gunk-blog.com | Designed by Sk Taslim Ahmed<br>
+        </div>
+        <!-- // footer -->
+
+        <!-- JQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <!-- Slick Carousel -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <!-- Custom Script -->
+        <script src="/asset/cms/asset/js/scripts.js"></script>
+        <script>
+            $(document).ready(function() {
+                var showChar = 300;
+                var ellipsestext = "........";
+                var moretext = "more";
+                var lesstext = "less";
+                $('.more').each(function() {
+                    var content = $(this).html();
+
+                    if (content.length > showChar) {
+
+                        var c = content.substr(0, showChar);
+                        var h = content.substr(showChar - 1, content.length - showChar);
+
+                        var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;</span>';
+
+                        $(this).html(html);
+                    }
+
+                });
+            });
+        </script>
+</body>
+
+</html>
